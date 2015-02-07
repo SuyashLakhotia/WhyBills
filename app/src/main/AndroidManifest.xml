@@ -18,11 +18,13 @@
         </activity>
         <activity
             android:name=".ExpenseActivity"
-            android:label="@string/title_activity_expense" >
+            android:label="@string/title_activity_expense"
+            android:theme="@style/ListFont">
         </activity>
         <activity
             android:name=".ReceiptsView"
-            android:label="@string/title_activity_receipts_view" >
+            android:label="@string/title_activity_receipts_view"
+            android:theme="@style/ListFont">
         </activity>
     </application>
 

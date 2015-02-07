@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WhyBills!"
+        android:text="WhyBills?"
         android:id="@+id/AppName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total (For this month): "
+        android:text="Total (for this month): "
         android:id="@+id/TotalTextView"
         android:layout_below="@+id/AppName"
         android:layout_alignParentStart="true"
@@ -42,8 +42,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/AddNew"
+        android:text="Scan QR Code"
+        android:id="@+id/scanQR"
         android:layout_below="@+id/TotalTextView"
         android:layout_centerHorizontal="true"
         android:background="#ff000000"
@@ -51,14 +51,15 @@
         android:layout_marginTop="45dp"
         android:textSize="20dp"
         android:paddingEnd="20dp"
-        android:paddingStart="20dp" />
+        android:paddingStart="20dp"
+        android:onClick="scanQR" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Expense Tracker"
         android:id="@+id/ExpenseTracker"
-        android:layout_below="@+id/AddNew"
+        android:layout_below="@+id/scanQR"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:textColor="#ffffffff"

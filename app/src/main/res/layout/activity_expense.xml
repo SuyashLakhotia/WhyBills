@@ -17,7 +17,8 @@
         android:layout_centerHorizontal="true"
         android:elegantTextHeight="false"
         android:textSize="35dp"
-        android:textColor="#ffffffff" />
+        android:textColor="#ffffffff"
+        android:textFilterEnabled="false" />
 
     <ListView
         android:layout_width="wrap_content"

@@ -31,7 +31,7 @@ public class ReceiptsView extends ListActivity {
         Cursor cursor = dbHelper.fetchItem(ExpenseActivity.a);
         startManagingCursor(cursor);
 
-        int[] to = new int[]{R.id.text2, R.id.text3};
+        int[] to = new int[]{R.id.text3, R.id.text4};
 
         String[] from = new String[]{TransactionDB.KEY_ITEM_NAME, TransactionDB.KEY_TOTPRICE};
 

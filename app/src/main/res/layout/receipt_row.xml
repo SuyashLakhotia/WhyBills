@@ -6,14 +6,14 @@
 
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text2"
+    android:id="@+id/text3"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:textSize="20dp" />
 
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text3"
+    android:id="@+id/text4"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:textSize="15dp"

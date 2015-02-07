@@ -12,11 +12,12 @@
         android:layout_height="wrap_content"
         android:text="WhyBills?"
         android:id="@+id/AppName"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:elegantTextHeight="false"
         android:textSize="35dp"
-        android:textColor="#ffffffff" />
+        android:textColor="#ffffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -33,9 +33,9 @@ public class ExpenseActivity extends ListActivity {
         Cursor remindersCursor = dbHelper.fetchAllExpenses();
         startManagingCursor(remindersCursor);
 
-        String[] from = new String[]{ExpensesDB.KEY_STORE};
+        String[] from = new String[]{ExpensesDB.KEY_STORE, ExpensesDB.KEY_TOTAL};
 
-        int[] to = new int[]{R.id.text1};
+        int[] to = new int[]{R.id.text1, R.id.text2};
 
         SimpleCursorAdapter expenses =
                 new SimpleCursorAdapter(this, R.layout.expense_row, remindersCursor, from, to);

@@ -15,7 +15,7 @@ public class TransactionDB {
 
     private static final String DATABASE_NAME = "transactions";
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public static String DATABASE_TABLE = "TransactionTable";
     public static final String KEY_TIME = "timeStamp";
@@ -152,25 +152,17 @@ public class TransactionDB {
                 KEY_TIME, KEY_STORE, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, null, null, null, null, null, null);
     }
 
-    /**
-     * Return a Cursor positioned at the reminder that matches the given rowId
-     *
-     * @param itemName name of item to retrieve
-     * @return Cursor positioned to matching reminder, if found
-     * @throws SQLException if reminder could not be found/retrieved
-     */
-    public Cursor fetchItem(String itemName) throws SQLException {
+    public Cursor fetchItem(int trId) throws SQLException {
 
         Cursor mCursor =
 
-                mDb.query(true, DATABASE_TABLE, new String[] {KEY_ITEM_NAME,
-                                KEY_TIME, KEY_STORE, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID},  KEY_ITEM_NAME + "=" + itemName, null,
-                        null, null, null, null, null);
+                mDb.query(true, DATABASE_TABLE, new String[] {KEY_TIME,
+                                KEY_STORE, KEY_ITEM_NAME, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, KEY_TRANSACTION_ID + "=" + trId, null,
+                        null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
         return mCursor;
-
     }
 
 }

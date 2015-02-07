@@ -15,6 +15,7 @@ import android.app.ListActivity;
 public class ExpenseActivity extends ListActivity {
 
     private ExpensesDB dbHelper;
+    public static int a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class ExpenseActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+        a = (int) id;
         Intent i = new Intent(this, ReceiptsView.class);
         i.putExtra(ExpensesDB.KEY_EXPENSE, id);
         startActivityForResult(i, 1);

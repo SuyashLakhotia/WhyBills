@@ -13,7 +13,7 @@ public class ExpensesDB {
 
     private static final String DATABASE_NAME = "ExpensesDB";
     private static final String DATABASE_TABLE = "Expenses";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
 
     public static final String KEY_EXPENSE = "_id";
     public static final String KEY_TIME = "timeStamp";
@@ -130,36 +130,16 @@ public class ExpensesDB {
                 KEY_TIME, KEY_STORE, KEY_TOTAL}, null, null, null, null, null, null);
     }
 
-    /**
-     * Return a Cursor positioned at the reminder that matches the given rowId
-     *
-     * @param trId id of item to retrieve
-     * @return Cursor positioned to matching reminder, if found
-     * @throws SQLException if reminder could not be found/retrieved
-     */
-    /** public Cursor fetchTransaction(long trId) throws SQLException {
-
-     Cursor mCursor =
-
-     mDb2.query(true, DATABASE_TABLE, new String[] {
-     KEY_TIME, KEY_STORE, KEY_TOTAL}, KEY_TR_ID + "=" + trId, null,
-     null, null, null, null);
-     if (mCursor != null) {
-     mCursor.moveToFirst();
-     }
-     return mCursor;
-
-     }
-     */
 
     public double monthlyExpenses(int month, int year)
     {
-        String query = "Select sum(total) from " + DATABASE_TABLE + " where timestamp like \'" + year + "-" + month + "%\';";
+        String query = "Select sum(total) from " + DATABASE_TABLE + " where timestamp like \'%" + month + "" + year + "%\';";
 
         DatabaseHelper mDbHelper2;
         mDbHelper2 = new DatabaseHelper(mCtx);
         SQLiteDatabase mDb2 = mDbHelper2.getWritableDatabase();
         Cursor cursor = mDb2.rawQuery(query, null);
+        cursor.moveToFirst();
         double sum = cursor.getDouble(0);
         cursor.close();
         return sum;

@@ -7,10 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -23,8 +25,10 @@ public class MainActivity extends Activity {
     private TransactionDB TransDBHelper;
     private ExpensesDB ExpenseDBHelper;
     private Calendar mCal;
+    private ExpensesDB expDBHandler = new ExpensesDB(this);
 
     private Button button2;
+    private TextView err;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,31 @@ public class MainActivity extends Activity {
 
         button2 = (Button) findViewById(R.id.ExpenseTracker);
         button2.setOnClickListener(ExpenseTrackerListener);
+
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+        double sum = expDBHandler.monthlyExpenses(month, year);
+        err = (TextView)findViewById(R.id.TotaltextView);
+        err.setText("" + sum);
+
+        mHandler.postDelayed(mUpdateUITimerTask, 1000);
     }
+
+    private final Runnable mUpdateUITimerTask = new Runnable() {
+        public void run() {
+            System.out.println("HERE.");
+            Calendar c = Calendar.getInstance();
+            int month = c.get(Calendar.MONTH);
+            int year = c.get(Calendar.YEAR);
+            double sum = expDBHandler.monthlyExpenses(month, year);
+            err = (TextView)findViewById(R.id.TotaltextView);
+            err.setText("" + sum);
+
+            mHandler.postDelayed(this, 1000);
+        }
+    };
+    private final Handler mHandler = new Handler();
 
     public void scanQR(View v) {
         try {
@@ -96,15 +124,25 @@ public class MainActivity extends Activity {
 
                 fields = records[0].split("\t");
 
-                long table_name = ExpenseDBHelper.enterTransaction(timestamp, fields[0], total);
-
-                for(int c = 0; c < (records.length - 1); c++){
+                for(int c = 0; c < (records.length - 1); c++) {
                     fields = records[c].split("\t");
 
                     price = Float.parseFloat(fields[2]);
                     q = Integer.parseInt(fields[3]);
 
                     total = total + (price * q);
+                }
+
+                System.out.println("Timestamp = " + timestamp);
+                System.out.println("Total = " + total);
+                long table_name = ExpenseDBHelper.enterTransaction(timestamp, fields[0], total);
+
+
+                for(int c = 0; c < (records.length - 1); c++){
+                    fields = records[c].split("\t");
+
+                    price = Float.parseFloat(fields[2]);
+                    q = Integer.parseInt(fields[3]);
 
                     System.out.println(fields[0]);
                     System.out.println(fields[1]);

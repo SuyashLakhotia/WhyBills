@@ -37,7 +37,8 @@
         android:layout_toEndOf="@+id/TotalTextView"
         android:textColor="#ff94090d"
         android:textSize="20dp"
-        android:text="Total" />
+        android:text="Total"
+        android:editable="false" />
 
     <Button
         android:layout_width="wrap_content"

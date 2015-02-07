@@ -22,9 +22,11 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@android:id/list"
         android:layout_below="@+id/AppName"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:dividerHeight="2dp"
+        android:divider="#ffffffff" />
 </RelativeLayout>

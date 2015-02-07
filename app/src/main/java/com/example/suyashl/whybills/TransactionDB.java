@@ -15,7 +15,7 @@ public class TransactionDB {
 
     private static final String DATABASE_NAME = "transactions";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     public static String DATABASE_TABLE = "TransactionTable";
     public static final String KEY_TIME = "timeStamp";
@@ -25,6 +25,7 @@ public class TransactionDB {
     public static final String KEY_QTY = "qty";
     public static final String KEY_TOTPRICE = "totprice";
     public static final String KEY_TRANSACTION_ID = "transactionID";
+    public static final String KEY_ID = "_id";
 
     private static final String TAG = "TransactionDB";
     public DatabaseHelper mDbHelper;
@@ -36,7 +37,7 @@ public class TransactionDB {
 
     private static final String DATABASE_CREATE =
             "create table " + DATABASE_TABLE + " ("
-                    + KEY_TIME + " text not null, "
+                    + KEY_ID + " int primary key, " + KEY_TIME + " text not null, "
                     + KEY_STORE + " text not null, "
                     + KEY_ITEM_NAME + " text not null, "
                     + KEY_ITEM_PRICE + " float(7,4) not null, "
@@ -152,13 +153,12 @@ public class TransactionDB {
                 KEY_TIME, KEY_STORE, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, null, null, null, null, null, null);
     }
 
-    public Cursor fetchItem(int trId) throws SQLException {
-
+    public Cursor fetchItem(int trID) throws SQLException {
         Cursor mCursor =
 
-                mDb.query(true, DATABASE_TABLE, new String[] {KEY_TIME,
-                                KEY_STORE, KEY_ITEM_NAME, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, KEY_TRANSACTION_ID + "=" + trId, null,
-                        null, null, null, null);
+                mDb.query(true, DATABASE_TABLE, new String[] {KEY_ID, KEY_TIME,
+                                KEY_STORE, KEY_ITEM_NAME, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, KEY_TRANSACTION_ID + "=" + trID, null,
+                        null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }

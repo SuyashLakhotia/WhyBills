@@ -28,16 +28,14 @@ public class ReceiptsView extends ListActivity {
     }
 
     private void fillData() {
-        System.out.println(ExpenseActivity.a);
         Cursor cursor = dbHelper.fetchItem(ExpenseActivity.a);
         startManagingCursor(cursor);
 
-        String[] from = new String[]{TransactionDB.KEY_ITEM_NAME};
+        int[] to = new int[]{R.id.text2, R.id.text3};
 
-        int[] to = new int[]{R.id.text2};
+        String[] from = new String[]{TransactionDB.KEY_ITEM_NAME, TransactionDB.KEY_TOTPRICE};
 
-        SimpleCursorAdapter receipts =
-                new SimpleCursorAdapter(this, R.layout.receipt_row, cursor, from, to);
-        setListAdapter(receipts);
+        SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(this,R.layout.receipt_row, cursor, from, to);
+        setListAdapter(adapter2);
     }
 }

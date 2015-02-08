@@ -17,7 +17,8 @@
         android:elegantTextHeight="false"
         android:textSize="35dp"
         android:textColor="#ffffffff"
-        android:textFilterEnabled="false" />
+        android:textFilterEnabled="false"
+        android:paddingEnd="30dp" />
 
     <ListView
         android:layout_width="wrap_content"

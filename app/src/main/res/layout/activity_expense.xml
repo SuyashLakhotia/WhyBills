@@ -7,7 +7,6 @@
     android:background="@drawable/background"
     tools:context="com.example.suyashl.whybills.ExpenseActivity">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +17,8 @@
         android:elegantTextHeight="false"
         android:textSize="35dp"
         android:textColor="#ffffffff"
-        android:textFilterEnabled="false" />
+        android:textFilterEnabled="false"
+        android:paddingEnd="30dp"/>
 
     <ListView
         android:layout_width="wrap_content"

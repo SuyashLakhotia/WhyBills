@@ -13,7 +13,7 @@
         android:text="WhyBills?"
         android:id="@+id/AppName"
         android:elegantTextHeight="false"
-        android:textSize="35dp"
+        android:textSize="40dp"
         android:textColor="#ffffffff"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -25,21 +25,22 @@
         android:text="Total (for this month): "
         android:id="@+id/TotalTextView"
         android:layout_marginTop="93dp"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textColor="#ffffffff"
         android:layout_below="@+id/AppName"
-        android:layout_toStartOf="@+id/TotaltextView" />
+        android:layout_toStartOf="@+id/TotaltextView"
+        android:layout_alignEnd="@+id/AppName" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/TotaltextView"
         android:textColor="#ff94090d"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:text="Total"
         android:editable="false"
         android:layout_alignTop="@+id/TotalTextView"
-        android:layout_alignEnd="@+id/ExpenseTracker" />
+        android:layout_toEndOf="@+id/AppName" />
 
     <Button
         android:layout_width="wrap_content"
@@ -48,13 +49,14 @@
         android:id="@+id/scanQR"
         android:background="#ff000000"
         android:textColor="#ffffffff"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="66dp"
         android:textSize="20dp"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:onClick="scanQR"
         android:layout_below="@+id/TotaltextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/ExpenseTracker"
+        android:layout_alignEnd="@+id/ExpenseTracker" />
 
     <Button
         android:layout_width="wrap_content"

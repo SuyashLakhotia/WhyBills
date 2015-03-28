@@ -27,8 +27,8 @@ public class MainActivity extends Activity {
     private Calendar mCal;
     private ExpensesDB expDBHandler = new ExpensesDB(this);
 
-    private Button button2;
-    private TextView err;
+    private Button button;
+    private TextView monthly_total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,28 +38,28 @@ public class MainActivity extends Activity {
         TransDBHelper = new TransactionDB(this);
         ExpenseDBHelper = new ExpensesDB(this);
 
-        button2 = (Button) findViewById(R.id.ExpenseTracker);
-        button2.setOnClickListener(ExpenseTrackerListener);
+        button = (Button) findViewById(R.id.ExpenseTracker);
+        button.setOnClickListener(ExpenseTrackerListener);
 
         Calendar c = Calendar.getInstance();
         int month = c.get(Calendar.MONTH);
         int year = c.get(Calendar.YEAR);
         double sum = expDBHandler.monthlyExpenses(month, year);
-        err = (TextView)findViewById(R.id.TotaltextView);
-        err.setText("" + sum);
+        monthly_total = (TextView)findViewById(R.id.TotaltextView);
+        monthly_total.setText("" + sum);
 
         mHandler.postDelayed(mUpdateUITimerTask, 1000);
     }
 
     private final Runnable mUpdateUITimerTask = new Runnable() {
         public void run() {
-            System.out.println("HERE.");
+            System.out.println("Total Amount Update.");
             Calendar c = Calendar.getInstance();
             int month = c.get(Calendar.MONTH);
             int year = c.get(Calendar.YEAR);
             double sum = expDBHandler.monthlyExpenses(month, year);
-            err = (TextView)findViewById(R.id.TotaltextView);
-            err.setText("" + sum);
+            monthly_total = (TextView)findViewById(R.id.TotaltextView);
+            monthly_total.setText("" + sum);
 
             mHandler.postDelayed(this, 1000);
         }
@@ -68,17 +68,17 @@ public class MainActivity extends Activity {
 
     public void scanQR(View v) {
         try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
+            // Start the scanning activity from the com.google.zxing.client.android.SCAN intent.
             Intent intent = new Intent(ACTION_SCAN);
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
             startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
+            // On catch, show the download dialog.
             showDialog(MainActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
         }
     }
 
-    //alert dialog for downloadDialog
+    // Displays an alert dialog in case of no QR Code Scanner.
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
         AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
         downloadDialog.setTitle(title);
@@ -101,11 +101,10 @@ public class MainActivity extends Activity {
         return downloadDialog.show();
     }
 
-    //on ActivityResult method
+    // Processes the input from the QR Code and saves it into the database.
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                //get the extras that are returned from the intent
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 Toast toast = Toast.makeText(this, "Scan Complete & Bill Added.", Toast.LENGTH_LONG);
                 toast.show();
@@ -177,12 +176,8 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

@@ -32,9 +32,8 @@ public class TransactionDB {
     public SQLiteDatabase mDb;
 
     /**
-     * Database creation SQL statement
+     * Database creation SQL statement.
      */
-
     private static final String DATABASE_CREATE =
             "create table " + DATABASE_TABLE + " ("
                     + KEY_ID + " int primary key, " + KEY_TIME + " text not null, "
@@ -69,31 +68,20 @@ public class TransactionDB {
         }
     }
 
-    public void createTransaction(SQLiteDatabase db) {
-
-
-        db.execSQL(DATABASE_CREATE);
-
-    }
 
     /**
      * Constructor - takes the context to allow the database to be
-     * opened/created
-     *
-     * @param ctx the Context within which to work
+     * opened/created.
      */
     public TransactionDB(Context ctx) {
         this.mCtx = ctx;
     }
 
+
     /**
-     * Open the database. If it cannot be opened, try to create a new
-     * instance of the database. If it cannot be created, throw an exception to
-     * signal the failure
-     *
-     * @return this (self reference, allowing this to be chained in an
-     *         initialization call)
-     * @throws android.database.SQLException if the database could be neither opened or created
+     * Opens the database. If it cannot be opened, tries to create a new
+     * instance of the database. If it cannot be created, throws an exception to
+     * signal the failure.
      */
     public TransactionDB open() throws SQLException {
         mDbHelper = new DatabaseHelper(mCtx);
@@ -107,12 +95,7 @@ public class TransactionDB {
 
 
     /**
-     * Create a new reminder using the title, description and reminder date time provided.
-     * If the reminder is successfully created return the new rowId
-     * for that reminder, otherwise return a -1 to indicate failure.
-     *
-     * @param timestamp the time the item was bought
-     * @return rowId or -1 if failed
+     * Creates a new record.
      */
     public void AddItems(String timestamp, String store,String itemName, float price, int qty, int trID) {
         ContentValues initialValues = new ContentValues();
@@ -128,13 +111,10 @@ public class TransactionDB {
         long n =  mDb.insert(DATABASE_TABLE, null, initialValues);
     }
 
-    /**
-     * Delete the reminder with the given rowId
-     *
-     *
-     * @return true if deleted, false otherwise
-     */
 
+    /**
+     * Deletes the entire transactions table.
+     */
     public boolean deleteTransaction() {
 
         mDb.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
@@ -143,16 +123,8 @@ public class TransactionDB {
 
 
     /**
-     * Return a Cursor over the list of all reminders in the database
-     *
-     * @return Cursor over all reminders
+     * Returns a Cursor over the list of all the records in the database.
      */
-    public Cursor fetchTransaction() {
-
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ITEM_NAME,
-                KEY_TIME, KEY_STORE, KEY_ITEM_PRICE, KEY_QTY, KEY_TOTPRICE, KEY_TRANSACTION_ID}, null, null, null, null, null, null);
-    }
-
     public Cursor fetchItem(int trID) throws SQLException {
         Cursor mCursor =
 
@@ -166,7 +138,3 @@ public class TransactionDB {
     }
 
 }
-
-
-
-

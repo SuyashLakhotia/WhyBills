@@ -18,7 +18,7 @@
         android:textSize="35dp"
         android:textColor="#ffffffff"
         android:textFilterEnabled="false"
-        android:paddingEnd="30dp" />
+        android:paddingEnd="0dp" />
 
     <ListView
         android:layout_width="wrap_content"

@@ -1,15 +1,9 @@
-package com.example.suyashl.whybills;
+package com.suyashlakhotia.WhyBills;
 
 import android.app.ListActivity;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.app.ListActivity;
 
 
 public class ReceiptsView extends ListActivity {

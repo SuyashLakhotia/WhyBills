@@ -1,4 +1,4 @@
-package com.example.suyashl.whybills;
+package com.suyashlakhotia.WhyBills;
 
 import android.app.Activity;
 import android.app.AlertDialog;

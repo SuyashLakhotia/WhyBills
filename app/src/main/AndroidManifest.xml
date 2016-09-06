@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.suyashl.whybills" >
+    package="com.suyashlakhotia.WhyBills" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.suyashlakhotia.WhyBills.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,12 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExpenseActivity"
+            android:name="com.suyashlakhotia.WhyBills.ExpenseActivity"
             android:label="@string/title_activity_expense"
             android:theme="@style/ListFont">
         </activity>
         <activity
-            android:name=".ReceiptsView"
+            android:name="com.suyashlakhotia.WhyBills.ReceiptsView"
             android:label="@string/title_activity_receipts_view"
             android:theme="@style/ListFont">
         </activity>
